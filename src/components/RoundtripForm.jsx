@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import plus from '../assets/plus-50.png'
+import minus from '../assets/minus-50.png'
 // import usePlacesAutocomplete, {
 //   getGeocode,
 //   getLatLng,
@@ -17,15 +19,26 @@ import 'react-datepicker/dist/react-datepicker.css';
 function RoundtripForm() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [totalpassenger, setTotalPassenger] = useState();
+  const [totalpassenger, setTotalPassenger] = useState(0);
   const [isOpen,setISOpen] = useState(false);
+  const [adultValue , setAdultValue] = useState(0)
+  const [childValue , setChildValue] = useState(0)
+  const [infantLValue , setInfantLValue] = useState(0)
+  const [infantSValue , setInfatSValue] = useState(0)
 
   const togglePopup = () =>{
     setISOpen(!isOpen);
   }
  
-  const handlePassenger = () =>{
-
+  const incrementValue = () =>{
+    setAdultValue((prevValue)=> prevValue +1);
+  }
+  const decrementValue = () =>{
+    if(adultValue>0){
+      setAdultValue((prevValue) => prevValue - 1 ) ;
+    }
+    setAdultValue((prevValue) => prevValue) ;
+   
   }
 
   return (
@@ -66,22 +79,76 @@ function RoundtripForm() {
       </div> 
       <div>
         {isOpen && ( <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 "
+          className="fixed inset-0 bg-black bg-opacity-75 w-full z-50 "
           onClick={togglePopup}
         >
           <div
             className="bg-white p-8 rounded-lg shadow-lg h-full w-full md:w-1/2 lg:w-1/3"
             onClick={(e) => e.stopPropagation()} // Prevent click events from closing the popup
           >
-            <h2 className="text-2xl font-bold mb-4">Full-Screen Popup</h2>
-            <p className="mb-4">This is a full-screen popup example using Tailwind CSS.</p>
+            <div className='w-full'>
+              <h1>Travelers</h1>
+              <div className='flex gap-6 flex-col mb-10'>
+
+             
+                <div className='flex justify-between px-5 items-center text-center pt-4'>
+                 <div>
+                 <p>Adults</p>
+                 </div>
+                  
+                  <div className='flex justify-center items-center gap-5'>
+                    <span onClick={decrementValue}><img src={minus} alt="decrement icon" /></span>
+                    <p>{adultValue}</p>
+                    <span onClick={incrementValue}><img src={plus} alt="increment icon" /></span>
+                  </div>
+                </div>
+                <div className='flex justify-between px-5 items-center text-center pt-4'>
+                <div>
+                <p>Children</p>
+                <span>Ages 2 to 17</span>
+                </div>
+               
+                  <div className='flex justify-center items-center gap-5'>
+                    <span onClick={decrementValue}><img src={minus} alt="decrement icon" /></span>
+                    <p>{adultValue}</p>
+                    <span onClick={incrementValue}><img src={plus} alt="increment icon" /></span>
+                  </div>
+
+                </div>
+                <div className='flex justify-between px-5 items-center text-center pt-4'>
+                <div>
+                <p>Infants on Lap</p>
+                <span>Younger than 2</span>
+                </div>
+             
+                  <div className='flex justify-center items-center gap-5'>
+                    <span onClick={decrementValue}><img src={minus} alt="decrement icon" /></span>
+                    <p>{adultValue}</p>
+                    <span onClick={incrementValue}><img src={plus} alt="increment icon" /></span>
+                  </div>
+
+                </div>
+                <div className='flex justify-between px-5 items-center text-center pt-4'>
+                <div>
+                <p>Infants in seat</p>
+                <span>Younger than 2</span>
+                </div>
+                  <div className='flex justify-center items-center gap-5'>
+                    <span onClick={decrementValue}><img src={minus} alt="decrement icon" /></span>
+                    <p>{adultValue}</p>
+                    <span onClick={incrementValue}><img src={plus} alt="increment icon" /></span>
+                  </div>
+
+                </div>
+
+            </div>
             <button
               onClick={togglePopup}
               className="bg-red-500 text-white px-4 py-2 rounded"
             >
               Close
             </button>
-          </div>
+            </div> </div>
         </div>
       )}
       </div>
