@@ -5,6 +5,9 @@ import User from '../assets/user.png';
 function Navigation() {
   return (
     <div>
+      <header className='w-full bg-gray-500 text-white text-center py-4'>
+        <span className='text-xl font-sans '>Welcome to PlanAndTravel.com  &hearts; </span>
+      </header>
       <nav className='flex justify-between w-5/6 mx-auto pt-5 sticky pb-4'>
         <div>
           <Link to="/">
