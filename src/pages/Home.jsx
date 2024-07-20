@@ -25,7 +25,7 @@ function Home() {
     <div>
       <Navigation />
       <section className='pt-12 flex flex-col items-center'>
-        <div className='flex justify-center w-11/12 mx-auto gap-10 mt-10 border border-gray-400 py-5'>
+        <div className='flex justify-center w-11/12 mx-auto gap-10 mt-10 border border-gray-300 py-5 rounded-t-3xl'>
           <div
             className={`text-3xl  ${flight ? 'text-sky-800 underline' : 'text-sky-400'} hover:underline hover:text-sky-800 active:underline`}
             onClick={handleFlight}
@@ -40,7 +40,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className='w-11/12  mx-auto  border border-gray-400 border-t-0'>
+      <section className='w-11/12  mx-auto  border border-gray-300 border-t-0 rounded-b-3xl'>
       <div className='mx-4'>
       {flight && <FlightForm />}
       {hotels && <HotelForm />}
