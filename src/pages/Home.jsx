@@ -3,7 +3,6 @@ import Navigation from '../components/Navigation';
 import FlightForm from '../components/FlightForm';
 import HotelForm from '../components/HotelForm';
 import Coursel from '../components/Coursel';
-import Logo from '../assets/brandlogo.svg'
 import Blog from '../components/Blog';
 import ContactForm from '../components/ContactForm';
 import Testimonials from '../components/Testimonials';
