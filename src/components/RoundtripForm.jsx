@@ -146,66 +146,102 @@ function RoundtripForm() {
   return (
     <form className="w-full flex flex-col md:flex-row md:items-center md:justify-center md:gap-5 md:text-center">
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="mb-5 w-full p-1 relative">
-        <input
-          type="text"
-          placeholder="From"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          value={from}
-          onChange={(e) => {
-            setActiveInput('from');
-            handleInputChange(setFrom, e.target.value, 'from');
-          }}
-        />
-        {activeInput === 'from' && fromSuggestions.length > 0 && (
-          <ul className="absolute bg-white border border-gray-300 w-full mt-1 rounded-lg z-20">
-            {fromSuggestions.map((suggestion) => (
-              <li
-                key={suggestion.value}
-                className="p-2 hover:bg-gray-200 cursor-pointer"
-                onClick={() => handleSuggestionClick(setFrom, 'from', suggestion)}
-              >
-                <div className="flex items-start gap-4 py-2">
-                  <div className=''>
-                    <img src={flight} alt="flight logo"  className='w-10'/>
-                  </div>
-                  <div className='flex flex-col items-start'>
-                    {suggestion.label}
-                    <span className='text-xs text-gray-500 font-serif'>{suggestion.country}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div className="mb-5 w-full p-1 relative">
-        <input
-          type="text"
-          placeholder="To"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          value={to}
-          onChange={(e) => {
-            setActiveInput('to');
-            handleInputChange(setTo, e.target.value, 'to');
-          }}
-        />
-        {activeInput === 'to' && toSuggestions.length > 0 && (
-          <ul className="absolute bg-white border border-gray-300 w-full mt-1 rounded-lg z-20">
-            {toSuggestions.map((suggestion) => (
-              <li
-                key={suggestion.value}
-                className="p-2 hover:bg-gray-200 cursor-pointer"
-                onClick={() => handleSuggestionClick(setTo, 'to', suggestion)}
-              >
-                {suggestion.label}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <div className="mb-5 w-full p-1 relative flex">
+  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <svg
+      version="1.0"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 64 64"
+      enableBackground="new 0 0 64 64"
+      xmlSpace="preserve"
+      width={30}
+      className="fill-current text-gray-500"
+    >
+      <path d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289l16,24C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289C54.289,34.008,56,29.219,56,24C56,10.746,45.254,0,32,0z M32,32c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.418,32,32,32z"/>
+    </svg>
+  </div>
+  <input
+    type="text"
+    placeholder="Leaving from"
+    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-2xl rounded-lg block w-full pl-12 pr-6 py-2 placeholder-gray-600"
+    value={from}
+    onChange={(e) => {
+      setActiveInput('from');
+      handleInputChange(setFrom, e.target.value, 'from');
+    }}
+  />
+  {activeInput === 'from' && fromSuggestions.length > 0 && (
+    <ul className="absolute bg-white border border-gray-300 w-full mt-1 rounded-lg z-20">
+      {fromSuggestions.map((suggestion) => (
+        <li
+          key={suggestion.value}
+          className="p-2 hover:bg-gray-200 cursor-pointer"
+          onClick={() => handleSuggestionClick(setFrom, 'from', suggestion)}
+        >
+          <div className="flex items-start gap-4 py-2">
+            <img src={flight} alt="flight logo" className="w-10" />
+            <div className="flex flex-col items-start">
+              {suggestion.label}
+              <span className="text-xs text-gray-500 font-serif">{suggestion.country}</span>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
 
-      <div className="w-full mb-5 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 flex md:flex-row gap-4">
+<div className="mb-5 w-full p-1 relative">
+  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <svg
+      version="1.0"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 64 64"
+      enableBackground="new 0 0 64 64"
+      xmlSpace="preserve"
+      width={30}
+      className="fill-current text-gray-500"
+    >
+      <path d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289l16,24C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289C54.289,34.008,56,29.219,56,24C56,10.746,45.254,0,32,0z M32,32c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.418,32,32,32z"/>
+    </svg>
+  </div>
+  <input
+    type="text"
+    placeholder="Going to"
+    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-2xl rounded-lg block w-full pl-12 pr-6 py-2 placeholder-gray-600"
+    value={to}
+    onChange={(e) => {
+      setActiveInput('to');
+      handleInputChange(setTo, e.target.value, 'to');
+    }}
+  />
+  {activeInput === 'to' && toSuggestions.length > 0 && (
+    <ul className="absolute bg-white border border-gray-300 w-full mt-1 rounded-lg z-20">
+      {toSuggestions.map((suggestion) => (
+        <li
+          key={suggestion.value}
+          className="p-2 hover:bg-gray-200 cursor-pointer"
+          onClick={() => handleSuggestionClick(setTo, 'to', suggestion)}
+        >
+        <div className="flex items-start gap-4 py-2">
+            <img src={flight} alt="flight logo" className="w-10" />
+            <div className="flex flex-col items-start">
+              {suggestion.label}
+              <span className="text-xs text-gray-500 font-serif">{suggestion.country}</span>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+
+      <div className="w-full mb-5 bg-gray-50 flex md:flex-row gap-4">
         <div className="border border-gray-300 rounded-lg p-1 w-1/2">
           <DatePicker
             selected={startDate}
@@ -214,7 +250,7 @@ function RoundtripForm() {
             startDate={startDate}
             endDate={endDate}
             placeholderText="Start Date"
-            className="p-2.5"
+            className="py-3 "
             required
           />
         </div>
@@ -227,12 +263,12 @@ function RoundtripForm() {
             endDate={endDate}
             minDate={startDate}
             placeholderText="End Date"
-            className="p-2.5"
+            className="py-3 "
             required
           />
         </div>
       </div>
-      <div className="w-full mb-5 bg-gray-50 border rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 block p-1">
+      <div className="w-full mb-5 bg-gray-50 border rounded-lg border-gray-300 block p-1">
         <input
           type="text"
           placeholder="Passenger"
@@ -343,6 +379,9 @@ function RoundtripForm() {
           </div>
         </div>
       )}
+      <div>
+
+      </div>
     </form>
   );
 }
