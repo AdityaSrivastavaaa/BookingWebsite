@@ -7,29 +7,29 @@ import cancel from '../assets/cancel-50.png';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { debounce } from 'lodash-es';
+import flight from '../assets/flight-24.png';
 
-// Function to search for airports
 const fetchAirports = async (keyword, authToken, apiUrl) => {
   try {
     const response = await axios.get(`${apiUrl}/v1/reference-data/locations`, {
       params: {
         keyword: keyword,
         subType: 'AIRPORT',
-        subType: 'CITY'
       },
       headers: {
-        Authorization: `Bearer ${authToken}`
-      }
+        Authorization: `Bearer ${authToken}`,
+      },
     });
 
     if (response.data && response.data.data) {
+      console.log(response.data.data)
       const airports = response.data.data
-        .filter(item => item.iataCode && item.name)
-        .map(item => ({
-          label: `${item.name} (${item.iataCode}), ${item.address.cityName}`,
-          value: item.iataCode
+        .filter((item) => item.iataCode && item.name)
+        .map((item) => ({
+          label: `${item.address.cityName} (${item.iataCode} - ${item.name})`,
+          country : `${item.address.countryName}`,
+          value: item.iataCode,
         }));
-
       return airports;
     } else {
       return [];
@@ -142,6 +142,7 @@ function RoundtripForm() {
       setToSuggestions([]);
     }
   };
+
   return (
     <form className="w-full flex flex-col md:flex-row md:items-center md:justify-center md:gap-5 md:text-center">
       <Toaster position="top-center" reverseOrder={false} />
@@ -164,7 +165,15 @@ function RoundtripForm() {
                 className="p-2 hover:bg-gray-200 cursor-pointer"
                 onClick={() => handleSuggestionClick(setFrom, 'from', suggestion)}
               >
-                {suggestion.label}
+                <div className="flex items-start gap-4 py-2">
+                  <div className=''>
+                    <img src={flight} alt="flight logo"  className='w-10'/>
+                  </div>
+                  <div className='flex flex-col items-start'>
+                    {suggestion.label}
+                    <span className='text-xs text-gray-500 font-serif'>{suggestion.country}</span>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
