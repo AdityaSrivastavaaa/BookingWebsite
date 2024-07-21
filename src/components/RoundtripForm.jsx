@@ -165,7 +165,7 @@ function RoundtripForm() {
   <input
     type="text"
     placeholder="Leaving from"
-    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-2xl rounded-lg block w-full pl-12 pr-6 py-2 placeholder-gray-600"
+    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full pl-12 p-3 placeholder-gray-600"
     value={from}
     onChange={(e) => {
       setActiveInput('from');
@@ -177,12 +177,12 @@ function RoundtripForm() {
       {fromSuggestions.map((suggestion) => (
         <li
           key={suggestion.value}
-          className="p-2 hover:bg-gray-200 cursor-pointer"
+         className="p-2 hover:bg-gray-200 cursor-pointer"
           onClick={() => handleSuggestionClick(setFrom, 'from', suggestion)}
         >
-          <div className="flex items-start gap-4 py-2">
-            <img src={flight} alt="flight logo" className="w-10" />
-            <div className="flex flex-col items-start">
+          <div className="flex items-start gap-2 py-1">
+            <img src={flight} alt="flight logo" className="w-6" />
+            <div  className="flex flex-col items-start">
               {suggestion.label}
               <span className="text-xs text-gray-500 font-serif">{suggestion.country}</span>
             </div>
@@ -212,7 +212,7 @@ function RoundtripForm() {
   <input
     type="text"
     placeholder="Going to"
-    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-2xl rounded-lg block w-full pl-12 pr-6 py-2 placeholder-gray-600"
+     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full pl-12 p-3 placeholder-gray-600"
     value={to}
     onChange={(e) => {
       setActiveInput('to');
@@ -224,10 +224,10 @@ function RoundtripForm() {
       {toSuggestions.map((suggestion) => (
         <li
           key={suggestion.value}
-          className="p-2 hover:bg-gray-200 cursor-pointer"
+         className="p-2 hover:bg-gray-200 cursor-pointer"
           onClick={() => handleSuggestionClick(setTo, 'to', suggestion)}
         >
-        <div className="flex items-start gap-4 py-2">
+        <div className="flex items-start gap-2 py-1">
             <img src={flight} alt="flight logo" className="w-10" />
             <div className="flex flex-col items-start">
               {suggestion.label}
@@ -241,8 +241,8 @@ function RoundtripForm() {
 </div>
 
 
-      <div className="w-full mb-5 bg-gray-50 flex md:flex-row gap-4">
-        <div className="border border-gray-300 rounded-lg p-1 w-1/2">
+      <div className="w-full mb-5 bg-gray-50 flex flex-col md:flex-row gap-2 md:gap-4">
+        <div className="border border-gray-300 rounded-lg p-1 w-full md:w-1/2">
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -250,11 +250,11 @@ function RoundtripForm() {
             startDate={startDate}
             endDate={endDate}
             placeholderText="Start Date"
-            className="py-3 "
+                className="text-base w-full border-none bg-transparent p-3"
             required
           />
         </div>
-        <div className="border border-gray-300 rounded-lg p-1 w-1/2">
+        <div className="border border-gray-300 rounded-lg p-1 w-full md:w-1/2">
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
@@ -263,7 +263,7 @@ function RoundtripForm() {
             endDate={endDate}
             minDate={startDate}
             placeholderText="End Date"
-            className="py-3 "
+                className="text-base w-full border-none bg-transparent p-3"
             required
           />
         </div>
@@ -380,8 +380,11 @@ function RoundtripForm() {
         </div>
       )}
       <div>
-
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded-lg w-full md:w-auto mb-5">
+        Search
+      </button>
       </div>
+     
     </form>
   );
 }
